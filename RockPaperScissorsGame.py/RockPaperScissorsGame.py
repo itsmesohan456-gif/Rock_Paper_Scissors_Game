@@ -45,4 +45,22 @@ def play_game():
 
     print(f"Result: {result}")
 
-                 
+    cursor.execute('INSERT INTO stats (user_choice, computer_choice, result) VALUES (?, ?, ?)',
+                   (user_choice, computer_choice, result))
+    conct.commit()
+
+    return True
+
+playing = True
+while playing:
+    playing = play_game()
+
+print("]n--- FINAL GAME STATISTICS ---")
+cursor.execute('SELECT result, COUNT(*) FROM stats GROUP by result')
+summary = cursor.fetchall()
+
+for row in summary: 
+  print(f"{row[0]}: {row[1]}")
+
+conct.close()
+print("Thanks for playing the game!")

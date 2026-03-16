@@ -64,3 +64,5 @@ for row in summary:
 
 conct.close()
 print("Thanks for playing the game!")
+
+print("Here after 1 month.")
